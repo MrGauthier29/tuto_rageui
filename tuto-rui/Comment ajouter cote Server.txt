@@ -1,0 +1,71 @@
+alors on vas faire l'exmple donc pour acheter du pain donc on vas rajouter quelque truc cote client et bien sur cote server 
+
+
+Cote Client  :
+
+alors je vais prendre un example d'un d'une fonction donc pour le tuto je vais faire : powx_tuto:BuyPain voila donc regarde ce que je vais faire 
+
+en dessous de votre boutton donc par exmple le pain que je vais mettre en dessous je vais rajouter le TriggerServerEvent just en dessous de  "if (Selected) then"
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RageUI.Button("Pain", "Miam Miam C'est bon !", {RightLabel = "~g~5$"}, true, function(Hovered, Active, Selected)
+                    if (Selected) then
+                    -- et ici vous mettez le native pour relier la function de l'achat que on vas mettre sur le cote server
+                     TriggerServerEvent('powx_tuto:BuyPain')
+                    end
+                end)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+VOILA ON A RAJOUTER SUR LE COTE CLIENT MAINTENANT ON VAS ALLER SUR LE COTE SERVER : 
+
+quand vous etes sur le cote server vous aller rajouter cette ligne de code : 
+
+alors dans le premiere ligne vous mettez le nom de la function que on a mis cote client donc : powx_tuto:BuyPain
+
+ensuite vous changer le prix de l'item juste en dessous puis le nom de l'item qui est dans votre BDD puis la notif quand vous avez acheter l'item 
+puis la notif quand vous n'avez pas assez d'argent 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+RegisterNetEvent('powx_tuto:BuyPain')
+AddEventHandler('powx_tuto:BuyPain', function()
+
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local price = 5
+    local xMoney = xPlayer.getMoney()
+
+    if xMoney >= price then
+
+        xPlayer.removeMoney(price)
+        xPlayer.addInventoryItem('bread', 1)
+        TriggerClientEvent('esx:showNotification', source, "~g~Achats~w~ effectué !")
+    else
+         TriggerClientEvent('esx:showNotification', source, "Vous n'avez assez ~r~d\'argent")
+    end
+end)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+ET VOILA VOUS AVEZ CREE UN COTE SERVEUR POUR VOTRE PAIN DANS VOTRE SHOP 
+
+
+
+n'hesitez pas a rejoindre le discord de Gauthier pour ce qui ne sont pas meme si la moitié sont dessue deja :   https://discord.gg/aUMyEHU
+
+
+
+
+
+
+
+AAAAAAHHHHH ET SURTOUT N'OUBLIER PAS DE FAIRE HALAASSSS LES 5OOO VUES SUR CETTE VIDEO X:)
+
+
+
+
